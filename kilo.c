@@ -299,7 +299,7 @@ editorRowDelChar(erow *row, int at) {
 void
 editorInsertChar(int c) {
 	if (E.cy == E.numrows) {
-		editorAppendRow("", 0);
+		editorInsertRow(E.numrows, "", 0);
 	}
 	editorRowInsertChar(&E.row[E.cy], E.cx, c);
 	E.cx++;
@@ -361,7 +361,7 @@ editorOpen(char *filename) {
 				       line[linelen - 1] == '\r')) {
 			linelen--;
 		}
-		editorAppendRow(line, linelen);
+		editorInsertRow(E.numrows, line, linelen);
 	}
 	free(line);
 	fclose(fp);
